@@ -6,8 +6,11 @@ service: docker
 jobs:
   include:
     - env: OS=fedora
+      before_script: docker pull fedora:latest
       script: docker run -t --rm fedora:latest bash -c "cat /etc/redhat-release"
     - env: OS=ubi
+      before_script: docker pull registry.access.redhat.com/ubi8:latest
       script: docker run -t --rm registry.access.redhat.com/ubi8:latest bash -c "cat /etc/redhat-release"
     - env: OS=debian
+      before_script: docker pull debian:latest
       script: docker run -t --rm debian:latest bash -c "cat /etc/os-release"
