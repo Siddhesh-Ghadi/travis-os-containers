@@ -1,0 +1,13 @@
+arch: ppc64le
+os: linux
+dist: focal
+service: docker
+
+jobs:
+  include:
+    - env: OS=fedora
+      script: docker run -t --rm fedora:latest bash -c "cat /etc/redhat-release"
+    - env: OS=ubi
+      script: docker run -t --rm registry.access.redhat.com/ubi8:latest bash -c "cat /etc/redhat-release"
+    - env: OS=debian
+      script: docker run -t --rm debian:latest bash -c "cat /etc/os-release"
